@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{bbbd86b9-6853-4cb3-9041-3a8972bf89d2}</ProjectGuid>
+    <RootNamespace>KXPacketInspector</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>KXPacketInspector</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>$(SolutionDir)libs\MinHook;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <LibraryPath>$(SolutionDir)libs\MinHook;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnabled>false</VcpkgEnabled>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp23</LanguageStandard>
+      <DisableSpecificWarnings>4834;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)libs\safetyhook;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp23</LanguageStandard>
+      <DisableSpecificWarnings>4834;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)libs\safetyhook;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="libs\safetyhook\safetyhook.cpp" />
+    <ClCompile Include="libs\safetyhook\Zydis.c" />
+    <ClCompile Include="src\AppState.cpp" />
+    <ClCompile Include="src\Console.cpp" />
+    <ClCompile Include="src\D3DRenderHook.cpp" />
+    <ClCompile Include="src\FilterUtils.cpp" />
+    <ClCompile Include="src\FormattingUtils.cpp" />
+    <ClCompile Include="src\GuiStyle.cpp" />
+    <ClCompile Include="src\HookManager.cpp" />
+    <ClCompile Include="src\Hooks.cpp" />
+    <ClCompile Include="src\ImGuiManager.cpp" />
+    <ClCompile Include="libs\ImGui\imgui.cpp" />
+    <ClCompile Include="libs\ImGui\imgui_demo.cpp" />
+    <ClCompile Include="libs\ImGui\imgui_draw.cpp" />
+    <ClCompile Include="libs\ImGui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="libs\ImGui\imgui_impl_win32.cpp" />
+    <ClCompile Include="libs\ImGui\imgui_tables.cpp" />
+    <ClCompile Include="libs\ImGui\imgui_widgets.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\MessageHandlerHook.cpp" />
+    <ClCompile Include="src\MsgSendHook.cpp" />
+    <ClCompile Include="src\PacketData.cpp" />
+    <ClCompile Include="src\PacketHeaders.cpp" />
+    <ClCompile Include="src\PacketParser.cpp" />
+    <ClCompile Include="src\PacketProcessor.cpp" />
+    <ClCompile Include="src\SkillMemoryReader.cpp" />
+    <ClCompile Include="src\SkillCooldownTracker.cpp" />
+    <ClCompile Include="src\SkillDb.cpp" />
+    <ClCompile Include="src\SkillTraceCoordinator.cpp" />
+    <ClCompile Include="src\parsers\ParseAgentAttributeUpdatePacket.cpp" />
+    <ClCompile Include="src\parsers\ParseAgentStateBulkPacket.cpp" />
+    <ClCompile Include="src\parsers\ParseAgentMovementStatePacket.cpp" />
+    <ClCompile Include="src\parsers\ParseCombatBatchPacket.cpp" />
+    <ClCompile Include="src\parsers\ParseDeselectAgentPacket.cpp" />
+    <ClCompile Include="src\parsers\ParseHeartbeatPacket.cpp" />
+    <ClCompile Include="src\parsers\ParseInteractionResponsePacket.cpp" />
+    <ClCompile Include="src\parsers\ParseInteractWithAgentPacket.cpp" />
+    <ClCompile Include="src\parsers\ParseLogoutPacket.cpp" />
+    <ClCompile Include="src\parsers\ParseMovementPacket.cpp" />
+    <ClCompile Include="src\parsers\ParsePerformanceResponsePacket.cpp" />
+    <ClCompile Include="src\parsers\ParsePlayerStateUpdatePacket.cpp" />
+    <ClCompile Include="src\parsers\ParseSelectAgentPacket.cpp" />
+    <ClCompile Include="src\parsers\ParseServerCommandPacket.cpp" />
+    <ClCompile Include="src\parsers\ParseSessionTickPacket.cpp" />
+    <ClCompile Include="src\parsers\ParseSkillUpdatePacket.cpp" />
+    <ClCompile Include="src\parsers\ParseTimeSyncPacket.cpp" />
+    <ClCompile Include="src\PatternScanner.cpp" />
+    <ClCompile Include="src\GameThreadHook.cpp" />
+    <ClCompile Include="src\Log.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\AppState.h" />
+    <ClInclude Include="src\Config.h" />
+    <ClInclude Include="src\Console.h" />
+    <ClInclude Include="src\D3DRenderHook.h" />
+    <ClInclude Include="src\FilterUtils.h" />
+    <ClInclude Include="src\FormattingUtils.h" />
+    <ClInclude Include="src\GameStructs.h" />
+    <ClInclude Include="src\GuiStyle.h" />
+    <ClInclude Include="src\HookManager.h" />
+    <ClInclude Include="src\Hooks.h" />
+    <ClInclude Include="src\ImGuiManager.h" />
+    <ClInclude Include="libs\ImGui\imconfig.h" />
+    <ClInclude Include="libs\ImGui\imgui.h" />
+    <ClInclude Include="libs\ImGui\imgui_impl_dx11.h" />
+    <ClInclude Include="libs\ImGui\imgui_impl_win32.h" />
+    <ClInclude Include="libs\ImGui\imgui_internal.h" />
+    <ClInclude Include="libs\ImGui\imstb_rectpack.h" />
+    <ClInclude Include="libs\ImGui\imstb_textedit.h" />
+    <ClInclude Include="libs\ImGui\imstb_truetype.h" />
+    <ClInclude Include="libs\MinHook\MinHook.h" />
+    <ClInclude Include="src\MessageHandlerHook.h" />
+    <ClInclude Include="src\MsgSendHook.h" />
+    <ClInclude Include="src\PacketData.h" />
+    <ClInclude Include="src\PacketHeaders.h" />
+    <ClInclude Include="src\PacketParser.h" />
+    <ClInclude Include="src\PacketProcessor.h" />
+    <ClInclude Include="src\PacketStructures.h" />
+    <ClInclude Include="src\SkillMemoryReader.h" />
+    <ClInclude Include="src\SkillCooldownTracker.h" />
+    <ClInclude Include="src\SkillDb.h" />
+    <ClInclude Include="src\SkillTraceCoordinator.h" />
+    <ClInclude Include="src\parsers\ParseAgentAttributeUpdatePacket.h" />
+    <ClInclude Include="src\parsers\ParseAgentStateBulkPacket.h" />
+    <ClInclude Include="src\parsers\ParseAgentMovementStatePacket.h" />
+    <ClInclude Include="src\parsers\ParseCombatBatchPacket.h" />
+    <ClInclude Include="src\parsers\ParseDeselectAgentPacket.h" />
+    <ClInclude Include="src\parsers\ParseHeartbeatPacket.h" />
+    <ClInclude Include="src\parsers\ParseInteractionResponsePacket.h" />
+    <ClInclude Include="src\parsers\ParseInteractWithAgentPacket.h" />
+    <ClInclude Include="src\parsers\ParseLogoutPacket.h" />
+    <ClInclude Include="src\parsers\ParseMovementPacket.h" />
+    <ClInclude Include="src\parsers\ParsePerformanceResponsePacket.h" />
+    <ClInclude Include="src\parsers\ParsePlayerStateUpdatePacket.h" />
+    <ClInclude Include="src\parsers\ParseSelectAgentPacket.h" />
+    <ClInclude Include="src\parsers\ParseServerCommandPacket.h" />
+    <ClInclude Include="src\parsers\ParseSessionTickPacket.h" />
+    <ClInclude Include="src\parsers\ParseSkillUpdatePacket.h" />
+    <ClInclude Include="src\parsers\ParseTimeSyncPacket.h" />
+    <ClInclude Include="src\PatternScanner.h" />
+    <ClInclude Include="src\GameThreadHook.h" />
+    <ClInclude Include="src\CaptureQueue.h" />
+    <ClInclude Include="src\Log.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
